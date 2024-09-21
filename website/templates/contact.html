@@ -67,9 +67,6 @@
                               <li class="nav-item">
                                  <a class="nav-link" href="glasses.html">Our Glasses</a>
                               </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="shop.html">Shop</a>
-                              </li>
                               <li class="nav-item active">
                                  <a class="nav-link" href="contact.html">Contact Us</a>
                               </li>
@@ -80,10 +77,13 @@
                                  <a class="nav-link" href="sign_up.html">Register</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="login.html">Logout</a>
+                                 <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
                               </li>
                               <li class="nav-item d_none sea_icon">
-                                 <a class="nav-link" href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i><i class="fa fa-search" aria-hidden="true"></i></a>
+                                 <a class="nav-link" href="{{ url_for('auth.view_cart') }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
+                              </li>
+                              <li class="nav-item d_none sea_icon"></li>
+                                  <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
                               </li>
                            </ul>
                         </div>
@@ -152,7 +152,7 @@
                <div class="container">
                   <div class="row">
                      <div class="col-md-12">
-                        <p>© 2019 All Rights Reserved. Design by<a href="https://html.design/"> Free Html Templates</a></p>
+                        <p>© 2024 Sungla. All Rights Reserved. </a></p>
                      </div>
                   </div>
                </div>

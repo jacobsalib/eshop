@@ -69,9 +69,6 @@
                                  <a class="nav-link" href="glasses.html">Our Glasses</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="shop.html">Shop</a>
-                              </li>
-                              <li class="nav-item">
                                  <a class="nav-link" href="contact.html">Contact Us</a>
                               </li>
                               <li class="nav-item">
@@ -81,10 +78,13 @@
                                  <a class="nav-link" href="sign_up.html">Register</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="login.html">Logout</a>
+                                 <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
                               </li>
                               <li class="nav-item d_none sea_icon">
-                                 <a class="nav-link" href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i><i class="fa fa-search" aria-hidden="true"></i></a>
+                                 <a class="nav-link" href="{{ url_for('auth.view_cart') }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
+                              </li>
+                              <li class="nav-item d_none sea_icon"></li>
+                                  <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
                               </li>
                            </ul>
                         </div>
@@ -135,8 +135,8 @@
                   <div class="container">
                      <div class="carousel-caption">
                         <div class="text-bg">
-                           <h1> <span class="blu">Welcome <br></span>To Our Sunglasses</h1>
-                           <figure><img src="./static/images/banner_img.png" alt="#"/></figure>
+                           <h1> <span class="blu"> Register and get 10% off , use code NEW10</h1>
+                           <figure><img src="./static/images/10%.webp" alt="#"/></figure>
                            <a class="read_more" href="#">Shop Now</a>
                         </div>
                      </div>
@@ -194,85 +194,7 @@
          </div>
       </div>
       <!-- about section -->
-      <!-- Our  Glasses section -->
-      <div class="glasses">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-10 offset-md-1">
-                  <div class="titlepage">
-                     <h2>Our Glasses</h2>
-                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labor
-                        e et dolore magna aliqua. Ut enim ad minim veniam, qui
-                     </p>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="container-fluid">
-            <div class="row">
-               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                  <div class="glasses_box">
-                     <figure><img src="./static/images/glass1.png" alt="#"/></figure>
-                     <h3><span class="blu">$</span>50</h3>
-                     <p>Sunglasses</p>
-                  </div>
-               </div>
-               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                  <div class="glasses_box">
-                     <figure><img src="./static/images/glass2.png" alt="#"/></figure>
-                     <h3><span class="blu">$</span>50</h3>
-                     <p>Sunglasses</p>
-                  </div>
-               </div>
-               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                  <div class="glasses_box">
-                     <figure><img src="./static/images/glass3.png" alt="#"/></figure>
-                     <h3><span class="blu">$</span>50</h3>
-                     <p>Sunglasses</p>
-                  </div>
-               </div>
-               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                  <div class="glasses_box">
-                     <figure><img src="./static/images/glass4.png" alt="#"/></figure>
-                     <h3><span class="blu">$</span>50</h3>
-                     <p>Sunglasses</p>
-                  </div>
-               </div>
-               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                  <div class="glasses_box">
-                     <figure><img src="./static/images/glass5.png" alt="#"/></figure>
-                     <h3><span class="blu">$</span>50</h3>
-                     <p>Sunglasses</p>
-                  </div>
-               </div>
-               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                  <div class="glasses_box">
-                     <figure><img src="./static/images/glass6.png" alt="#"/></figure>
-                     <h3><span class="blu">$</span>50</h3>
-                     <p>Sunglasses</p>
-                  </div>
-               </div>
-               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                  <div class="glasses_box">
-                     <figure><img src="./static/images/glass7.png" alt="#"/></figure>
-                     <h3><span class="blu">$</span>50</h3>
-                     <p>Sunglasses</p>
-                  </div>
-               </div>
-               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                  <div class="glasses_box">
-                     <figure><img src="./static/images/glass8.png" alt="#"/></figure>
-                     <h3><span class="blu">$</span>50</h3>
-                     <p>Sunglasses</p>
-                  </div>
-               </div>
-               <div class="col-md-12">
-                  <a class="read_more" href="#">Read More</a>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- end Our  Glasses section -->
+ 
       <!-- Our shop section -->
       <div id="about" class="shop">
          <div class="container-fluid">
@@ -419,7 +341,7 @@
                <div class="row">
                   <div class="col-md-8 offset-md-2">
                      <ul class="location_icon">
-                        <li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i></a><br> Location</li>
+                        <li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i></a><br> Location </li>
                         <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i></a><br> +01 1234567890</li>
                         <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a><br> demo@gmail.com</li>
                      </ul>
@@ -430,7 +352,7 @@
                <div class="container">
                   <div class="row">
                      <div class="col-md-12">
-                        <p>© 2024 All Rights Reserved. Design by<a href="https://html.design/"> Free Html Templates</a></p>
+                        <p>© 2024 Sungla. All Rights Reserved. </a></p>
                      </div>
                   </div>
                </div>

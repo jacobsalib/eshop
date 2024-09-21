@@ -1,0 +1,76 @@
+{% extends "base.html" %} {% block title %}Signup{% endblock %} {% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Cart</title>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+
+<body>
+    <h1>Your Cart</h1>
+
+    {% if items %}
+        <ul>
+            {% for item in items %}
+
+                <li>
+                    {{ item.product.name }} - Quantity: {{ item.quantity }} - 
+                    Original Price: {{ item.product.price }} € - 
+                    Discount: {{ item.product.discount }} % - 
+                    Final Price: {{ "%.2f" | format(item.product.price  * item.quantity * (1 - item.product.discount / 100))}} €
+                </li>
+                <form method="POST" action="{{ url_for('auth.decrease_quantity', item_id=item.id) }}">
+                    <button type="submit">-</button>
+                </form>
+        
+                <form method="POST" action="{{ url_for('auth.increase_quantity', item_id=item.id) }}">
+                    <button type="submit">+</button>
+                </form>
+        
+                <form method="POST" action="{{ url_for('auth.remove_from_cart', item_id=item.id) }}">
+                    <button type="submit">Remove</button>
+                </form>
+            {% endfor %}
+        </ul>
+        <hr>
+        <h3>Subtotal: {{ total_price }} € </h3>
+        <p>Tax(included): {{ tax_included }} € </p>
+        <p>Shipping Fee: {{ shipping_fee_after }} € </p>
+        <form method="POST" action="{{ url_for('auth.apply_discount') }}">
+            <input type="text" name="discount_code" placeholder="Enter Discount Code">
+            <button type="submit">Apply</button>
+        </form>
+        <hr>
+        {% if user_code_discount_amount %}
+            <h3>Total Discount: {{ user_code_discount_amount }} € </h3>
+        {% endif %}
+        <h3>Grand Total: {{ grand_total }} € </h3>
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
+
+    <h3>
+    <a href="{{ url_for('views.view_glasses') }}">Continue Shopping</a>
+    </h3>
+
+    <form action="{{ url_for('auth.process_payment') }}" method="POST" id="payment-form">
+        <div class="form-row"></div>
+            <label for="card-element"></label>
+            <div id="card-element">
+            
+            <div id="card-errors" role="alert"></div>
+            </div>
+        </div>
+    
+        <input type="hidden" name="amount" value="{{ grand_total }}">  
+        <h3>
+            <button type="submit"> Pay {{ grand_total }} € </button>
+        </h3>
+    </form>
+    
+    
+</body>
+</html>
+
+{% endblock %}

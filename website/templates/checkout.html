@@ -1,0 +1,69 @@
+{% extends "base.html" %} {% block title %}Signup{% endblock %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <h2>Checkout</h2>
+    <h3>grand_total: {{ grand_total }} € </h3>
+    <h3>grand_total_after_discount_cod: {{ grand_total_after_discount_cod }} € </h3>
+    <h3>grand_total_discount_amount: {{ grand_total_discount_amount }} € </h3>
+    <h3>user_code_discount_percentage: {{ user_code_discount_percentage }} € </h3>
+    <h3>user_discount_code: {{ user_discount_code }} € </h3>
+    <form id="payment-form" action="{{ url_for('auth.process_payment') }}" method="POST">
+        <input type="hidden" name="amount" value="{{ grand_total }}">
+
+        <div id="card-element"></div>
+        <h3>
+        <button id="submitButton">Pay {{ grand_total }} € </button>
+        </h3>
+        <div id="card-errors" role="alert"></div>
+    </form>
+
+    <script>
+        var stripe = Stripe('pk_test_51PyIz6GCnsDUo2I6pa9gwkEqpk7KGOAiLT4frLH4ODssM1xWwGh2hiD97WUwS43qpta5GErUQpPKRjLZAb6Ovx1C00l88oWPWb');  // Replace with your actual Stripe public key
+        var elements = stripe.elements();
+    
+       
+        var card = elements.create('card');
+    
+        
+        card.mount('#card-element');
+    
+        
+        var form = document.getElementById('payment-form');
+    
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();  
+    
+           
+            stripe.createToken(card).then(function(result) {
+                if (result.error) {
+                    var errorElement = document.getElementById('card-errors');
+                    errorElement.textContent = result.error.message;
+                } else {
+                    stripeTokenHandler(result.token);
+                }
+            });
+        });
+    
+        function stripeTokenHandler(token) {
+            var hiddenInput = document.createElement('input');
+            hiddenInput.setAttribute('type', 'hidden');
+            hiddenInput.setAttribute('name', 'stripeToken');
+            hiddenInput.setAttribute('value', token.id);
+            form.appendChild(hiddenInput);
+            form.submit();
+        }
+    </script>
+</body>
+</html>
+
+
+
+{% endblock %}

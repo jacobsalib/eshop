@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% block title %}Signup{% endblock %} {% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E-Shop</title>
+</head>
+<body>
+    <h1>Products</h1>
+    <ul>
+        {% for product in products %}
+            <li>{{ product.name }} - ${{ product.price }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Add Product</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.name.label }} {{ form.name() }}
+        </div>
+        <div>
+            {{ form.price.label }} {{ form.price() }}
+        </div>
+        <div>
+            {{ form.description.label }} {{ form.description() }}
+        </div>
+        <div>
+            {{ form.photo.label }} {{ form.photo() }}
+        </div>
+        <div>
+            {{ form.discount.label }} {{ form.discount() }}
+        </div>
+        <button type="submit">Add Product</button>
+    </form>
+</body>
+</html>
+
+{% endblock %}
