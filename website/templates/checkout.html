@@ -10,11 +10,6 @@
 </head>
 <body>
     <h2>Checkout</h2>
-    <h3>grand_total: {{ grand_total }} € </h3>
-    <h3>grand_total_after_discount_cod: {{ grand_total_after_discount_cod }} € </h3>
-    <h3>grand_total_discount_amount: {{ grand_total_discount_amount }} € </h3>
-    <h3>user_code_discount_percentage: {{ user_code_discount_percentage }} € </h3>
-    <h3>user_discount_code: {{ user_discount_code }} € </h3>
     <form id="payment-form" action="{{ url_for('auth.process_payment') }}" method="POST">
         <input type="hidden" name="amount" value="{{ grand_total }}">
 
