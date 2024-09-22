@@ -8,7 +8,7 @@ from . import db
 from .forms import ProductForm
 from flask_mail import Message
 from . import mail
-
+from werkzeug.utils import secure_filename
 
 
 
@@ -89,7 +89,7 @@ def add_product():
         
         
         if photo:
-            filename = photo.filename
+            filename = secure_filename(photo.filename)
             photo_path = os.path.join('C:/Users/jacob/Desktop/shop/website/static/photos',  filename)
             photo.save(photo_path)
 
