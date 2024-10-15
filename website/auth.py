@@ -90,7 +90,7 @@ def add_product():
         
         if photo:
             filename = secure_filename(photo.filename)
-            photo_path = os.path.join('https://www.pythonanywhere.com/user/jacobsalib/files/home/jacobsalib/eshop/website/static/images',  filename)
+            photo_path = os.path.join('/home/jacobsalib/eshop/website/static/images',  filename)
             photo.save(photo_path)
 
         product = Product(name=name, price=price, description=description, photo=photo_path)
@@ -207,7 +207,7 @@ def view_cart():
         tax_included = round(total_price * (tax / 100))
 
         if discount_amount or user_code_discount_amount:
-            if total_price >= 100 :
+            if total_price > 100 :
                 shipping_fee_after = 0.00  
                 grand_total = total_price - discount_amount - user_code_discount_amount
             else:
@@ -260,7 +260,7 @@ def checkout():
     cart_items = CartItem.query.filter_by(cart_id=current_user.id).all()
     grand_total= sum(item.product.price * item.quantity for item in cart_items)
     
-    if user_code == 10 :
+    if not user_code == 10 :
         discount_amount = grand_total * (10 / 100)
         grand_total = grand_total - discount_amount
 
@@ -270,6 +270,8 @@ def checkout():
     
     return render_template('checkout.html',
                             grand_total=grand_total,
+                            discount_amount=discount_amount,
+                            user_code =user_code ,
                             stripe_public_key='pk_test_51PyIz6GCnsDUo2I6pa9gwkEqpk7KGOAiLT4frLH4ODssM1xWwGh2hiD97WUwS43qpta5GErUQpPKRjLZAb6Ovx1C00l88oWPWb')
 
 
