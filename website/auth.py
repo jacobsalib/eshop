@@ -90,7 +90,7 @@ def add_product():
         
         if photo:
             filename = secure_filename(photo.filename)
-            photo_path = os.path.join('https://www.pythonanywhere.com/user/jacobsalib/files/home/jacobsalib/eshop/website/static/photos',  filename)
+            photo_path = os.path.join('https://www.pythonanywhere.com/user/jacobsalib/files/home/jacobsalib/eshop/website/static/images',  filename)
             photo.save(photo_path)
 
         product = Product(name=name, price=price, description=description, photo=photo_path)

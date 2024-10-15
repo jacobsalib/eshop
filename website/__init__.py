@@ -13,7 +13,8 @@ def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'gsdgaaf33adarrasd'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
-    app.config['UPLOAD_FOLDER'] = './static/photos'
+    # app.config['UPLOAD_FOLDER'] = './static/photos'
+    app.config['UPLOAD_FOLDER'] = '/home/jacobsalib/eshop/website/static/images'
 
     stripe.api_key = 'sk_test_51PyIz6GCnsDUo2I6Oe2RmCdd9TIfcgSGizUh09Wz9e7KeMrr5G5LQtRTp3OLysm3GwzxqZ4UkGlWB50sRbxhUcU500zNPy1Cao'
     app.config['STRIPE_PUBLIC_KEY'] = 'pk_test_51PyIz6GCnsDUo2I6pa9gwkEqpk7KGOAiLT4frLH4ODssM1xWwGh2hiD97WUwS43qpta5GErUQpPKRjLZAb6Ovx1C00l88oWPWb'
